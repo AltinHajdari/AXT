@@ -1,0 +1,62 @@
+[project]
+name = "axt"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Your Name",email = "you@example.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "lxml (>=6.0.2,<7.0.0)",
+    "pyyaml (>=6.0.3,<7.0.0)",
+    "tenacity (>=9.1.4,<10.0.0)",
+    "typer (>=0.24.1,<0.25.0)",
+    "rich (>=14.3.3,<15.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[dependency-groups]
+dev = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "ruff (>=0.15.4,<0.16.0)",
+    "mypy (>=1.19.1,<2.0.0)"
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "S"]
+ignore = ["S101"]  # allow assert (tests + quick sanity checks)
+
+[tool.mypy]
+files = ["src"]
+mypy_path = "src"
+explicit_package_bases = true
+show_error_codes = true
+
+ignore_missing_imports = true
+warn_unused_configs = true
+
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+strict_optional = true
+
+enable_error_code = [
+  "ignore-without-code",
+  "truthy-bool",
+]
+
+[tool.poetry]
+packages = [{ include = "axt", from = "src" }]
+
+[tool.poetry.scripts]
+axt = "axt.cli:app"

@@ -1,0 +1,33 @@
+install:
+	poetry install
+
+format:
+	poetry run ruff format .
+
+lint:
+	poetry run ruff check . --fix
+
+type:
+	poetry run mypy src
+
+check:
+	format lint type
+
+test:
+	poetry run pytest
+
+build:
+	poetry build
+
+run:
+	poetry run axt --help
+
+help:
+	@echo "Commands:"
+	@echo " make install  - install dependencies"
+	@echo " make format   - format code"
+	@echo " make lint     - run linter"
+	@echo " make type     - run mypy"
+	@echo " make check    - run all checks (lint, format, type)"
+	@echo " make test     - run tests"
+	@echo " make build    - build package"
