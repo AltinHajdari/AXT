@@ -1,7 +1,4 @@
-# AXT
-
-Automated Xml Transformation
-TODO: Update descrption
+# GIRBridge
 
 ## Requirements
 
@@ -18,9 +15,9 @@ Clone the repository:
 
 ```bash
 git clone <repo-url>
-cd AXT
+cd girbridge
 poetry install
-poetry run axt --help
+poetry run girbridge --help
 ```
 
 Install dependencies:
@@ -38,13 +35,13 @@ eval $(poetry env activate)
 Run the CLI:
 
 ```bash
-axt --help
+girbridge --help
 ```
 
 If you prefer not to activate the environment:
 
 ```bash
-poetry run axt --help
+poetry run girbridge --help
 ```
 
 ### Option 2 - End User Installation (Wheel)
@@ -58,19 +55,19 @@ poetry build
 This creates something like:
 
 ```bash
-dist/axt-0.1.0-py3-none-any.whl
+dist/girbridge-0.1.0-py3-none-any.whl
 ```
 
 Install (end user):
 
 ```bash
-pip install dist/axt-0.1.0-py3-none-any.whl
+pip install dist/girbridge-0.1.0-py3-none-any.whl
 ```
 
 Run:
 
 ```bash
-axt --help
+girbridge --help
 ```
 
 So Poetry is not required for end users.

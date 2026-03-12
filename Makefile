@@ -20,7 +20,7 @@ build:
 	poetry build
 
 run:
-	poetry run axt --help
+	poetry run girbridge --help
 
 help:
 	@echo "Commands:"
