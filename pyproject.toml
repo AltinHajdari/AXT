@@ -12,7 +12,8 @@ dependencies = [
     "pyyaml (>=6.0.3,<7.0.0)",
     "tenacity (>=9.1.4,<10.0.0)",
     "typer (>=0.24.1,<0.25.0)",
-    "rich (>=14.3.3,<15.0.0)"
+    "rich (>=14.3.3,<15.0.0)",
+    "pydantic (>=2.12.5,<3.0.0)"
 ]
 
 
@@ -58,5 +59,9 @@ enable_error_code = [
 [tool.poetry]
 packages = [{ include = "girbridge", from = "src" }]
 
+include = [
+    "src/girbridge/resources/**/*"
+]
+
 [tool.poetry.scripts]
-girbridge = "girbridge.cli:app"
+girbridge = "girbridge.cli.app:app"
