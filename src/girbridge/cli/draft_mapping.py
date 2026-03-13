@@ -64,7 +64,9 @@ def draft_mapping_command(
     """
     Generate a draft-mapping prompt bundle for manual use in external chatbots.
     """
-    config = AppConfig()
+    config = AppConfig(
+        draft_mapping_prompt_file="resources/prompts/draft_mapping_system.txt"
+    )
     service = MappingService(config=config)
 
     console.print("[bold blue]Starting draft-mapping prompt generation...[/bold blue]")
