@@ -11,7 +11,9 @@ type:
 	poetry run mypy src
 
 check:
-	format lint type
+	$(MAKE) format
+	$(MAKE) lint
+	$(MAKE) type
 
 test:
 	poetry run pytest
