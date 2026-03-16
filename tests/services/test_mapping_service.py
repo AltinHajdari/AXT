@@ -6,6 +6,8 @@ from girbridge.core.config import AppConfig
 from girbridge.core.exceptions import PromptFileNotFoundError
 from girbridge.services.mapping_service import MappingService
 
+TEST_PROMPT_FILE = "resources/prompts/draft_mapping_system.txt"
+
 
 class _FakeResourcePath:
     def __init__(self, text: str | None = None, missing: bool = False) -> None:
@@ -30,7 +32,7 @@ class _FakeResourceRoot:
 
 
 def test_load_prompt_template_from_packaged_resource(monkeypatch: pytest.MonkeyPatch) -> None:
-    service = MappingService(config=AppConfig())
+    service = MappingService(config=AppConfig(draft_mapping_prompt_file=TEST_PROMPT_FILE))
     fake_resource = _FakeResourcePath(text="SYSTEM TEMPLATE")
 
     monkeypatch.setattr(
@@ -59,7 +61,7 @@ def test_load_prompt_template_raises_custom_error_when_missing(
 
 
 def test_build_prompt_handles_missing_sample_xml() -> None:
-    service = MappingService(config=AppConfig())
+    service = MappingService(config=AppConfig(draft_mapping_prompt_file=TEST_PROMPT_FILE))
 
     prompt = service._build_prompt(
         prompt_template="TEMPLATE",
@@ -77,7 +79,7 @@ def test_build_prompt_handles_missing_sample_xml() -> None:
 
 
 def test_copy_attachment_copies_file(tmp_path: Path) -> None:
-    service = MappingService(config=AppConfig())
+    service = MappingService(config=AppConfig(draft_mapping_prompt_file=TEST_PROMPT_FILE))
     source = tmp_path / "sample.xml"
     source.write_text("<sample />", encoding="utf-8")
     attachments_dir = tmp_path / "attachments"
@@ -89,7 +91,7 @@ def test_copy_attachment_copies_file(tmp_path: Path) -> None:
 
 
 def test_copy_xsd_attachments_for_single_file(tmp_path: Path) -> None:
-    service = MappingService(config=AppConfig())
+    service = MappingService(config=AppConfig(draft_mapping_prompt_file=TEST_PROMPT_FILE))
     xsd_file = tmp_path / "schema.xsd"
     xsd_file.write_text("<xsd />", encoding="utf-8")
     attachments_dir = tmp_path / "attachments"
@@ -104,7 +106,7 @@ def test_generate_draft_mapping_prompt_writes_output_and_attachments(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    service = MappingService(config=AppConfig())
+    service = MappingService(config=AppConfig(draft_mapping_prompt_file=TEST_PROMPT_FILE))
     monkeypatch.setattr(service, "_load_prompt_template", lambda: "PROMPT TEMPLATE")
 
     source_context = tmp_path / "source.txt"

@@ -58,9 +58,7 @@ class CodegenPromptService:
         )
 
     def _load_prompt_template(self) -> str:
-        resource_path = resources.files("girbridge").joinpath(
-            self.config.draft_mapping_prompt_file
-        )
+        resource_path = resources.files("girbridge").joinpath(self.config.draft_mapping_prompt_file)
 
         try:
             return resource_path.read_text(encoding="utf-8")
@@ -107,9 +105,7 @@ class CodegenPromptService:
         parts.append(customer_name)
 
         parts.append("\n\n## ATTACHED FILES\n")
-        parts.append(
-            "The following files are attached to this conversation and must be used.\n"
-        )
+        parts.append("The following files are attached to this conversation and must be used.\n")
 
         for file_name in attached_files:
             parts.append("- " + file_name + "\n")

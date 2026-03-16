@@ -53,6 +53,7 @@ CUSTOMER_NAME_OPTION = typer.Option(
     help="Customer identifier used in metadata.",
 )
 
+
 def generate_code_prompt_command(
     mapping_file: Path = MAPPING_FILE_OPTION,
     output_prompt: Path = OUTPUT_PROMPT_OPTION,
@@ -63,9 +64,7 @@ def generate_code_prompt_command(
     """
     Generate a code-generation prompt bundle for manual use in external chatbots.
     """
-    config = AppConfig(
-        draft_mapping_prompt_file="resources/prompts/generate_code_system.txt"
-    )
+    config = AppConfig(draft_mapping_prompt_file="resources/prompts/generate_code_system.txt")
     service = CodegenPromptService(config=config)
 
     console.print("[bold blue]Starting generate-code-prompt...[/bold blue]")
