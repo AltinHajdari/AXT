@@ -13,6 +13,7 @@ from girbridge.core.models import MappingDiffResult
 
 # TODO: The logic is not entirely correct. Reimplement when logic and rules are more clear.
 
+
 @dataclass(frozen=True)
 class _DiffEntry:
     op: str
@@ -139,7 +140,7 @@ class MappingDiffService:
                 )
             return
 
-        if isinstance(old_value, list) :
+        if isinstance(old_value, list):
             if self._collect_diffs_for_id_keyed_list(
                 old_list=old_value,
                 new_list=new_value,
